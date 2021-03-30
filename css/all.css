@@ -164,6 +164,8 @@ header .btn {
   color: #2D6D4B;
   margin-bottom: 20px;
   height: 100%;
+  text-align: justify;
+  text-justify: distribute;
 }
 .list li .originalPrice {
   display: block;
