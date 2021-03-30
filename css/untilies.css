@@ -1,0 +1,18 @@
+.btn {
+  font-size: 18px;
+  width: 70px;
+  text-align: center;
+  border-radius: 5px;
+  background-color: #2D6D4B;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #FCFAF2;
+  transition: 0.3s;
+  margin-bottom: 15px;
+}
+
+.btn:hover {
+  background-color: rgba(92, 166, 125, 0.3);
+  color: #0F4C3A;
+  transition: 0.3s;
+}
