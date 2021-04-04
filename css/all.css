@@ -98,6 +98,23 @@ img {
   text-align: center;
 }
 
+.upIcon {
+  color: #4e6e88;
+  background-color: rgba(182, 214, 223, 0.3);
+  border-radius: 50%;
+  padding: 5px;
+  position: fixed;
+  bottom: 40px;
+  right: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upIcon:hover {
+  background-color: #3c556a;
+  color: #b6d6df;
+}
+
 a {
   display: block;
   text-decoration: none;
@@ -156,6 +173,23 @@ body {
   text-align: center;
 }
 
+.upIcon {
+  color: #4e6e88;
+  background-color: rgba(182, 214, 223, 0.3);
+  border-radius: 50%;
+  padding: 5px;
+  position: fixed;
+  bottom: 40px;
+  right: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upIcon:hover {
+  background-color: #3c556a;
+  color: #b6d6df;
+}
+
 .btn {
   border: none;
   font-size: 16px;
@@ -194,6 +228,23 @@ body {
 
 .text-align-center {
   text-align: center;
+}
+
+.upIcon {
+  color: #4e6e88;
+  background-color: rgba(182, 214, 223, 0.3);
+  border-radius: 50%;
+  padding: 5px;
+  position: fixed;
+  bottom: 40px;
+  right: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upIcon:hover {
+  background-color: #3c556a;
+  color: #b6d6df;
 }
 
 .cart {
@@ -471,6 +522,23 @@ header .btn {
   text-align: center;
 }
 
+.upIcon {
+  color: #4e6e88;
+  background-color: rgba(182, 214, 223, 0.3);
+  border-radius: 50%;
+  padding: 5px;
+  position: fixed;
+  bottom: 40px;
+  right: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upIcon:hover {
+  background-color: #3c556a;
+  color: #b6d6df;
+}
+
 .delAllOrderBtn {
   display: block;
   margin-left: auto;
@@ -510,4 +578,16 @@ header .btn {
 .chart {
   background-color: #f6f6f6;
   padding: 50px 0;
+}
+
+.selectChart {
+  font-size: 24px;
+  color: #4e6e88;
+  display: block;
+  margin: 0 auto 30px;
+  padding: 5px 10px;
+  font-size: 18px;
+  border: 1px solid #4e6e88;
+  border-radius: 5px;
+  cursor: pointer;
 }

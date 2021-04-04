@@ -1,0 +1,84 @@
+.btn {
+  border: none;
+  font-size: 16px;
+  width: 120px;
+  text-align: center;
+  border-radius: 5px;
+  background-color: #4e6e88;
+  padding: 10px;
+  color: #f6f6f6;
+  transition: 0.3s;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgba(182, 214, 223, 0.3);
+  color: #3c556a;
+  transition: 0.3s;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.align-item-center {
+  align-items: center;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.delAllOrderBtn {
+  display: block;
+  margin-left: auto;
+  margin-bottom: 20px !important;
+}
+
+.orderList .listContent th,
+.orderList .listContent td {
+  width: 14.28%;
+  border: 1px solid #000;
+  padding: 7px 10px;
+}
+.orderList a {
+  text-align: center;
+  width: 90px;
+  border-radius: 3px;
+  padding: 5px;
+  color: #fff;
+}
+.orderList a:hover {
+  background-color: rgba(182, 214, 223, 0.3);
+  color: #3c556a;
+  transition: 0.3s;
+}
+.orderList .changeOrderStatusBtn {
+  background-color: #4e6e88;
+  margin-bottom: 7px;
+}
+.orderList .delOrderBtn {
+  background-color: #3c556a;
+}
+
+.orderStatusText {
+  font-weight: bold;
+}
+
+.chart {
+  background-color: #f6f6f6;
+  padding: 50px 0;
+}
+
+.selectChart {
+  font-size: 24px;
+}

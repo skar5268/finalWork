@@ -102,8 +102,13 @@ list.addEventListener('click', (e) => {
 function addCart(id) {
   let cartItem = {}
 
-  productData.forEach((item) => {
+  cartData.forEach((item) => {
+    if (item.product.id == id) {
+      swal("購物車已有這項商品", "可至「我的購物車」修改數量", "info");
+    }
+  })
 
+  productData.forEach((item) => {
     if (item.id == id) {
       cartItem = {
         data: {
@@ -344,3 +349,13 @@ function sendOrderSuccess() {
     })
   deleteCartAll();
 }
+
+const  upIcon = document.querySelector('.upIcon')
+
+upIcon.addEventListener('click', (e) => {
+  e.preventDefault();
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+});
+})
