@@ -5,23 +5,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>家具募資網</title>
+    <title>窩窩家居</title>
     <link rel="stylesheet" href="css/all.css">
 </head>
 
 <body>
     <div class="wrap">
         <header class="d-flex justify-content-between">
-            <h1>家具募資網</h1>
-            <a href="#" class="changePage btn">後台管理</a>
+            <h1>窩窩家居</h1>
+            <a href="backend.html" class="changePage btn">後台管理</a>
         </header>
 
         <div class="search">
-            <select name="" id="selectItemId" class="selectItem">
-                <option value="" disabled selected hidden>全部、找新品、限時折扣</option>
+            <select name="" id="selectMenuId" class="selectMenu">
+                <!-- <option value="" disabled selected hidden>商品類別</option>
                 <option value="全部">全部</option>
-                <option value="找新品">找新品</option>
-                <option value="限時折扣">限時折扣</option>
+                <option value="床架">床架</option> -->
             </select>
             <input type="text" name="" id="selectItemKeywordId" placeholder="搜尋品項">
             <button id="selectItemBtnId">搜尋</button>
@@ -39,11 +38,13 @@
                         <button id="addCartBtnId" class="btn">點此選購</button>
             </li> -->
         </ul>
-
-        <h2 class="title">我的購物車</h2>
-        <table class="cartList">
+    </div>
+        <section class="cart">
+            <h2 class="title">我的購物車</h2>
+        <table class="cartList wrap">
             <tr class="cartList-title">
                 <th>品項</th>
+                <th>單價</th>
                 <th>數量</th>
                 <th>金額</th>
                 <th><button class="cartList-title-btn btn">清空購物車</button></th>
@@ -55,41 +56,44 @@
                 <td><button class="btn">刪除品項</button></td>
             </tr> -->
         </table>
-        <p class="totalPriceInCartList">總計：<em> 1400</em> </p>
+        <!-- <p  class="totalPrice wrap">總金額：<em  class="totalPriceInCartList"></em> </p> -->
 
-
+        </section>
+        
+        <div class="wrap">
         <h2 class="title">填寫預定資料</h2>
         <form action="#" id="customerForm" class="form">
             <div class="d-flex">
-                <label for="name">姓名：</label>
+                <label for="name">姓名</label><p class="message 姓名"></p> </div>
                 <input type="text" id="name" placeholder="請輸入姓名" name="姓名">
-                <p class="message 姓名"></p>
-            </div>
+                
+           
             <div class="d-flex">
-                <label for="tel">電話：</label>
+                <label for="tel">電話</label><p class="message 電話"></p>  </div>
                 <input type="tel" id="tel" placeholder="請輸入電話" name="電話">
-                <p class="message 電話"></p>
-            </div>
+                
+          
             <div class="d-flex">
-                <label for="email">Email：</label>
+                <label for="email">Email</label><p class="message Email"></p> </div>
                 <input type="email" id="email" placeholder="請輸入 Email" name="Email">
-                <p class="message Email"></p>
-            </div>
+                
+           
             <div class="d-flex">
-                <label for="address">寄送地址：</label>
+                <label for="address">寄送地址</label><p class="message 寄送地址"></p></div>
                 <input type="text" id="address" placeholder="請輸入寄送地址" name="寄送地址">
-                <p class="message 寄送地址"></p>
-            </div>
+                
+            
             <div class="d-flex">
 
-                <label for="payment">交易方式：</label>
-                <select name="" id="payment" name="交易方式">
-                    <option value="ATM、超商付款" disabled selected hidden>ATM、超商付款</option>
+                <label for="payment">交易方式</label><p class="message 交易方式"></p></div>
+                <select id="payment" name="交易方式">
+                    <option value="" disabled selected hidden>交易方式</option>
                     <option value="ATM">ATM</option>
+                    <option value="信用卡">信用卡</option>
                     <option value="超商付款">超商付款</option>
                 </select>
-                <p class="message 交易方式"></p>
-            </div>
+                
+            
 
 
 
@@ -103,7 +107,8 @@
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
-    <script src="js/all.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="js/index.js"></script>
 </body>
 
 </html>

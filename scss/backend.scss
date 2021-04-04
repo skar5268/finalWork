@@ -1,0 +1,54 @@
+// $primary: #0f4c3a;
+// $secondary: #2d6d4b;
+// $light: #5dac81;
+// $dark: #0c4b39;
+// $white: #fcfaf2;
+// $black: #0b1013;
+// $warning: #b5495b;
+@import "untilies";
+
+.delAllOrderBtn {
+    display: block;
+    margin-left: auto;
+    margin-bottom: 20px !important;
+}
+.orderList {
+    .listContent {
+        th,
+        td {
+            width: 14.28%;
+            border: 1px solid #000;
+            padding: 7px 10px;
+        }
+    }
+
+    a {
+        text-align: center;
+        width: 90px;
+        border-radius: 3px;
+        padding: 5px;
+        color: #fff;
+    }
+    a:hover{
+        background-color: rgba(182, 214, 223, 0.3);
+        color: $primary;
+        transition: 0.3s;
+    }
+    .changeOrderStatusBtn {
+        background-color: $secondary;
+        margin-bottom: 7px;
+    }
+
+    .delOrderBtn {
+        background-color: $primary;
+    }
+}
+
+.orderStatusText {
+   font-weight: bold;
+}
+
+.chart {
+    background-color: $white;
+    padding: 50px 0;
+}

@@ -1,111 +1,112 @@
-$primary:#0F4C3A;
-$secondary:#2D6D4B;
-$light:#5DAC81;
-$dark:#0C4B39;
-$white:#FCFAF2;
-$black: #0B1013;
-$warning: #B5495B;
-
-body{
+// $primary: #0f4c3a;
+// $secondary: #2d6d4b;
+// $light: #5dac81;
+// $dark: #0c4b39;
+// $white: #fcfaf2;
+// $black: #0b1013;
+// $warning: #b5495b;
+@import "untilies";
+.cart {
     background-color: $white;
+    padding: 30px;
 }
 
-.wrap{
+.wrap {
     max-width: 1200px;
     margin: 30px auto;
 }
 
-h1{
+h1,
+.h1 {
     font-size: 48px;
     text-align: center;
-   // margin-bottom: 20px;
+    // margin-bottom: 20px;
     font-weight: bolder;
     color: $primary;
 }
 
-.changePage{
+.changePage {
     background-color: $primary;
     color: $white;
     width: 70px;
     padding: 5px;
-    
+
     text-align: center;
 }
 
-header{
-align-items: center;
-    margin-bottom:  30px;
-    .btn{
+header {
+    align-items: center;
+    margin-bottom: 30px;
+    .btn {
         margin-bottom: 0;
     }
 }
 
-.search{
+.search {
     margin-bottom: 30px;
-    input,select{
+    input,
+    select {
         padding: 5px;
     }
-    input,select,button{
-margin-right: 20px;
-font-size: 18px;
-border: 1px solid $light;
-border-radius: 5px;
-color: $light;
-
-
+    input,
+    select,
+    button {
+        margin-right: 20px;
+        font-size: 18px;
+        border: 1px solid $secondary;
+        border-radius: 5px;
+        color: $secondary;
     }
 
-    button{
+    button {
         color: $white;
-        background-color: $light;
+        background-color: $secondary;
         width: 80px;
         padding: 3px;
         cursor: pointer;
     }
-    button:hover{
-        background-color: rgba(92, 166, 125, 0.3);
-        color: #0F4C3A;
-        -webkit-transition: .3s;
-        transition: .3s;
+    button:hover {
+        background-color: rgba(182, 214, 223, 0.3);
+        color: $primary;
+        -webkit-transition: 0.3s;
+        transition: 0.3s;
     }
-    select{
+    select {
         cursor: pointer;
     }
 }
 
-
-.list{
+.list {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 
-    li{
+    li {
         width: 23%;
         display: flex;
         flex-direction: column;
         align-items: center;
         margin-bottom: 50px;
-        img{
+        img {
             //width: 300px;
             margin-bottom: 15px;
             border-radius: 5px;
-            transition: .5s;
-            
+            transition: 0.5s;
         }
-        img:hover{
+        img:hover {
             cursor: pointer;
             transform: scale(1.05);
-            transition: .5s;
+            transition: 0.5s;
         }
 
-        .itemName{
+        .itemName {
             font-size: 20px;
             font-weight: bold;
             text-align: center;
             color: $primary;
             margin-bottom: 10px;
         }
-        .itemDescription{
+        .itemDescription {
             font-size: 18px;
             color: $secondary;
             margin-bottom: 20px;
@@ -114,102 +115,143 @@ color: $light;
             text-justify: distribute;
         }
 
-        .originalPrice{
+        .originalPrice {
             display: block;
             text-align: center;
             color: $warning;
             margin-bottom: 18px;
         }
-        .itemPrice{
+        .itemPrice {
             font-size: 28px;
             font-weight: bold;
             text-align: center;
             color: $secondary;
             margin-bottom: 20px;
         }
-
     }
 }
 
-.title{
+.title {
     font-weight: bold;
     font-size: 36px;
     margin-bottom: 20px;
-    color: $light;
+    color: $secondary;
+    text-align: center;
 }
 
-.cartList{
+.cartList {
+    max-width: 1200px;
     width: 100%;
     text-align: center;
     font-size: 18px;
     margin-bottom: 20px;
-    
-    tr{
-        width: 33.3%;
-        
+    color: $primary;
 
-        th{
+    tr {
+        th {
+            width: 20%;
             font-weight: bold;
             padding: 20px 0;
         }
-
-    }
-    &-title{
-        vertical-align: middle!important;
-
-        &-btn{
-            width: 150px!important;
+        td {
+            border-bottom: 1px solid $secondary;
+            padding: 30px 0;
+            height: auto;
         }
     }
+    &-title {
+        vertical-align: middle !important;
+
+        &-btn {
+            margin-bottom: 0 !important;
+        }
+    }
+    &-btn {
+        margin-bottom: 0 !important;
+    }
+    .cart-img {
+        width: 90px;
+        margin-right: 20px;
+    }
+
+    .d-flex {
+        text-align: left;
+    }
+
+    .cartProductQuantity {
+        width: 50px;
+        height: 30px;
+        line-height: 27;
+        border-radius: 3px;
+        border: 1px solid $secondary;
+        padding: 5px 0px 5px 10px;
+        background-color: $white;
+        color: $secondary;
+    }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none !important;
+    }
+}
+.totalPrice {
+    text-align: right;
+}
+.totalPriceInCartList {
+    margin-left: 20px;
+    font-size: 18px;
+    border-bottom: 0!important;
 }
 
-.totalPriceInCartList{
-margin-bottom: 40px;
-font-size: 18px;
-}
-
-
-.form{
+.form {
     font-size: 20px;
-    .d-flex{
+    width: 350px;
+    margin: 0 auto;
+
+    .d-flex {
         margin-bottom: 20px;
         align-items: center;
-
+        margin-bottom: 6px;
+        justify-content: space-between;
     }
-    label{
+    label {
         font-weight: bold;
         display: block;
         margin-right: 10px;
         color: $secondary;
     }
-    input, select{
+    input,
+    select {
+        width: 100%;
         font-size: 20px;
         margin-right: 10px;
     }
-    .btn{
-        width: 135px;
+    .btn {
+        width: 255px;
+        display: block;
+        padding: 13px;
+        margin: 20px auto 0;
     }
-    .message{
-
-color: $warning;
-font-weight: bold;
-    }
-
-
-    input,select{
-        padding: 5px;
-    }
-    input,select{
-margin-right: 20px;
-font-size: 18px;
-border: 1px solid $light;
-border-radius: 5px;
-color: $light;
-
-
+    .message {
+        color: $warning;
+        font-weight: bold;
+        font-size: 16px;
     }
 
-    select{
+    input,
+    select {
+        padding: 8px 5px;
+        margin-bottom: 20px;
+    }
+    input,
+    select {
+        margin-right: 20px;
+        font-size: 18px;
+        border: 1px solid $light;
+        border-radius: 5px;
+        color:$secondary;
+    }
+
+    select {
         cursor: pointer;
     }
 }
