@@ -3,6 +3,9 @@ const uid = {
         'Authorization': " Ag3MjkSyNLOkt4giI70Y5KQhmQj1"
     }
 }
+const apiPath = "ag3mjksynlokt4gii70y5kqhmqj1";
+const baseUrl = "https://hexschoollivejs.herokuapp.com";
+const user = "admin";
 
 let ordersData = []
 const orderList = document.querySelector('.orderList');
@@ -10,7 +13,8 @@ const delAllOrderBtn = document.querySelector('.delAllOrderBtn');
 const selectChart = document.getElementById('selectChart');
 
 function getOrdersData() {
-    axios.get('https://hexschoollivejs.herokuapp.com/api/livejs/v1/admin/ag3mjksynlokt4gii70y5kqhmqj1/orders', uid)
+    const url = `${baseUrl}/api/livejs/v1/${user}/${apiPath}/orders`;
+    axios.get(url, uid)
         .then((res) => {
             ordersData = res.data.orders;
             ordersData.sort((a, b) => {
@@ -19,7 +23,7 @@ function getOrdersData() {
                 return timeA - timeB;
             })
             init(ordersData);
-            revenueChart(ordersData)
+            revenueChart(ordersData);
             // categoryChart(ordersData)
             // revenueRankChart(ordersData)
             // chart(ordersData);
@@ -61,7 +65,7 @@ function init(ordersData) {
 
         // 訂單日期
         let timeStamp = item.createdAt
-        console.log(timeStamp)
+        // console.log(timeStamp)
         let date = new Date(timeStamp * 1000)
 
         let dateValues = [
@@ -90,41 +94,48 @@ function init(ordersData) {
 // 刪除全部訂單
 delAllOrderBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    axios.delete('https://hexschoollivejs.herokuapp.com/api/livejs/v1/admin/ag3mjksynlokt4gii70y5kqhmqj1/orders', uid)
+    if (ordersData.length == 0){
+            swal("目前沒有訂單", "", "info");
+            return;
+    }
+    const url = `${baseUrl}/api/livejs/v1/${user}/${apiPath}/orders`
+    axios.delete(url, uid)
         .then((res) => {
-            restart(res)
+            swal("訂單已全部刪除", "", "success");
+            restart(res);
         })
 }, false)
 
 // 刪除訂單 or 變更狀態
 orderList.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log(e.target.className)
-    if (e.target.className == "delOrderBtn") delOrederOne(e);
-    else if (e.target.className == "changeOrderStatusBtn") changeOrderStatus(e);
+    // console.log(e.target.className)
+    if (e.target.className == "delOrderBtn") delOrederOne(e.target.dataset.id);
+    else if (e.target.className == "changeOrderStatusBtn") changeOrderStatus(e.target.dataset.id);
     else return;
 }, false)
 
 // 刪除一筆訂單
-function delOrederOne(e) {
+function delOrederOne(id) {
     const delOrderBtn = document.querySelectorAll('.delOrderBtn')
     // console.log(delOrderBtn)
-    const orderId = e.target.dataset.id;
+    const orderId = id;
     // console.log(orderId)
-
-    axios.delete(`https://hexschoollivejs.herokuapp.com/api/livejs/v1/admin/ag3mjksynlokt4gii70y5kqhmqj1/orders/${orderId}`, uid)
+    const url = `${baseUrl}/api/livejs/v1/${user}/${apiPath}/orders/${orderId}`
+    axios.delete(url, uid)
         .then((res) => {
-            restart(res)
+            swal("訂單刪除成功", "", "success");
+            restart(res);
         })
 }
 
 // 變更狀態
-function changeOrderStatus(e) {
+function changeOrderStatus(id) {
     //  const delOrderBtn = document.querySelectorAll('.delOrderBtn')
     // console.log(delOrderBtn)
     let obj = {}
-    const orderId = e.target.dataset.id;
-    console.log(orderId)
+    const orderId = id;
+    // console.log(orderId)
 
     let paid;
     ordersData.forEach((item) => {
@@ -138,31 +149,49 @@ function changeOrderStatus(e) {
         }
     }
 
-    axios.put(`https://hexschoollivejs.herokuapp.com/api/livejs/v1/admin/ag3mjksynlokt4gii70y5kqhmqj1/orders`, obj, uid)
+    const url = `${baseUrl}/api/livejs/v1/${user}/${apiPath}/orders`
+    axios.put(url, obj, uid)
         .then((res) => {
+            swal("訂單狀態變更成功", "", "success");
             restart(res);
         })
 }
 
 // 重新渲染列表
 function restart(res) {
-    // let newOrdersData = [];
-    // newOrdersData = res.data.orders;
-    // init(newOrdersData)
-    // console.log(res)
     ordersData = [];
     ordersData = res.data.orders;
+    ordersData.sort((a, b) => {
+        let timeA = a.createdAt;
+        let timeB = b.createdAt;
+        return timeA - timeB;
+    })
     init(ordersData);
-    chart(ordersData);
+    chartTitle(selectChart.value)
 }
-
 
 // 圓餅圖
 selectChart.addEventListener('change', (e) => {
-    if (e.target.value == "全產品類別營收比重") categoryChart(ordersData)
-    else if (e.target.value == "前 3 名品項營收比重") revenueRankChart(ordersData)
-    else revenueChart(ordersData)
+    chartTitle(e.target.value)
 }, false)
+
+// 圓餅圖 Title
+function chartTitle(nowValue) {
+    if (ordersData.length < 1) {
+        let categoryChart = c3.generate({
+            bindto: "#chart",
+            data: {
+                columns: [],
+                type: 'pie',
+            },
+        })
+        return;
+    }
+
+    if (nowValue == "全產品類別營收比重") categoryChart(ordersData)
+    else if (nowValue == "前 3 名品項營收比重") revenueRankChart(ordersData)
+    else revenueChart(ordersData)
+}
 
 // 全品項營收比重
 function revenueChart(data) {
@@ -214,7 +243,7 @@ function categoryChart(data) {
         })
     });
 
-    console.log(editData)
+    // console.log(editData)
     let columns = []
     let editDataKey = Object.keys(editData);
 
@@ -222,7 +251,7 @@ function categoryChart(data) {
         columns.push([[item], editData[item]])
     })
 
-    console.log(columns)
+    // console.log(columns)
 
     let categoryChart = c3.generate({
         bindto: "#chart",
@@ -267,19 +296,26 @@ function revenueRankChart(data) {
     let newColumns = []
     columns.forEach((item) => {
         editDataKey.forEach((editItem) => {
-            if (item == editData[editItem]) newColumns.push([editItem, editData[editItem]])
+            if (item == editData[editItem]) newColumns.push([editItem, editData[editItem]]);
         })
     })
 
     // 未達前三名的各項商品營收
-    let elseRevenue = 0
-    for (let i = 3; i < columns.length; i++) {
-        elseRevenue += columns[i]
-    }
+    let elseRevenue = 0;
 
     // 將要呈現的資料存成新陣列
-    let chartColumn = []
-    chartColumn.push(newColumns[0], newColumns[1], newColumns[2], ['其他商品', elseRevenue])
+    let chartColumn = [];
+    if (columns.length < 3) {
+        newColumns.forEach((item) => {
+            chartColumn.push(item);
+        })
+    } else {
+        for (let i = 3; i < columns.length; i++) {
+            elseRevenue += columns[i];
+        }
+        chartColumn.push(newColumns[0], newColumns[1], newColumns[2], ['其他商品', elseRevenue]);
+    }
+
 
     let revenueRankChart = c3.generate({
         bindto: "#chart",
@@ -294,12 +330,12 @@ function revenueRankChart(data) {
 }
 
 
-const  upIcon = document.querySelector('.upIcon')
+const upIcon = document.querySelector('.upIcon')
 
 upIcon.addEventListener('click', (e) => {
-  e.preventDefault();
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-});
+    e.preventDefault();
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 })

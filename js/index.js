@@ -1,15 +1,20 @@
+const apiPath = "ag3mjksynlokt4gii70y5kqhmqj1";
+const baseUrl = "https://hexschoollivejs.herokuapp.com";
+const user = "customer"
+
 let productData = [];
 
 // 取得產品列表
 function getProduct() {
-  axios.get('https://hexschoollivejs.herokuapp.com/api/livejs/v1/customer/ag3mjksynlokt4gii70y5kqhmqj1/products')
-    .then((res => {
+  const url = `${baseUrl}/api/livejs/v1/${user}/${apiPath}/products`;
+  axios.get(url)
+    .then((res) => {
       productData = res.data.products;
       //  console.log(productData)
       init(productData);
       categoryOption();
       getCart();
-    }))
+    })
 }
 
 getProduct();
@@ -101,12 +106,16 @@ list.addEventListener('click', (e) => {
 
 function addCart(id) {
   let cartItem = {}
+  let haveThisItem = false;
 
   cartData.forEach((item) => {
     if (item.product.id == id) {
       swal("購物車已有這項商品", "可至「我的購物車」修改數量", "info");
+      haveThisItem = true;
     }
   })
+
+  if (haveThisItem) return;
 
   productData.forEach((item) => {
     if (item.id == id) {
@@ -120,9 +129,10 @@ function addCart(id) {
   })
 
   // console.log(cartItem)
-
-  axios.post('https://hexschoollivejs.herokuapp.com/api/livejs/v1/customer/ag3mjksynlokt4gii70y5kqhmqj1/carts', cartItem)
+  const url = `${baseUrl}/api/livejs/v1/${user}/${apiPath}/carts`;
+  axios.post(url, cartItem)
     .then((res) => {
+      swal("商品已加入購物車", "", "success", { button: "繼續逛逛" });
       restartCart(res)
     })
     .catch((error) => {
@@ -131,7 +141,8 @@ function addCart(id) {
 }
 
 function getCart() {
-  axios.get('https://hexschoollivejs.herokuapp.com/api/livejs/v1/customer/ag3mjksynlokt4gii70y5kqhmqj1/carts')
+  const url = `${baseUrl}/api/livejs/v1/${user}/${apiPath}/carts`;
+  axios.get(url)
     .then((res) => {
       restartCart(res)
     })
@@ -146,31 +157,36 @@ cartList.addEventListener('click', (e) => {
   // console.log(e.target.nodeName)
   // console.log(e.target.className)
   if (e.target.nodeName !== 'BUTTON') return;
-  else if (e.target.className == "cartList-title-btn btn") {
-    deleteCartAll();
-    return;
-  }
+  else if (e.target.className == "cartList-title-btn btn") deleteCartAll();
   else deleteCartOne(e.target.dataset.id)
 
 }, false)
 
 // 清除購物車內全部產品
 function deleteCartAll() {
-  axios.delete('https://hexschoollivejs.herokuapp.com/api/livejs/v1/customer/ag3mjksynlokt4gii70y5kqhmqj1/carts')
+  if (cartData.length == 0) {
+    swal("購物車裡目前沒有東西", "先去購物吧", "info", { button: "開始花錢" });
+    return;
+  }
+
+  const url = `${baseUrl}/api/livejs/v1/${user}/${apiPath}/carts`;
+  axios.delete(url)
     .then((res) => {
-      restartCart(res)
+      restartCart(res);
+      swal("購物車已清空", "", "success", { button: "繼續逛逛" });
     })
     .catch((err) => {
-      console.log(err)
+      console.log(err);
     })
 }
 
 // 刪除品項
 function deleteCartOne(id) {
   let cartId = id
-
-  axios.delete(`https://hexschoollivejs.herokuapp.com/api/livejs/v1/customer/ag3mjksynlokt4gii70y5kqhmqj1/carts/${cartId}`)
+  const url = `${baseUrl}/api/livejs/v1/${user}/${apiPath}/carts/${cartId}`;
+  axios.delete(url)
     .then((res) => {
+      swal("商品刪除成功", "", "success", { button: "繼續逛逛" });
       restartCart(res);
     })
     .catch((error) => {
@@ -185,10 +201,22 @@ cartList.addEventListener('change', (e) => {
   let cartItem = {}
   // let filterData;
   // filterData = productData.filter((item) => item.id == id)
+
+  if (e.target.value < 1) {
+    swal("商品數量小於 1", "", "warning", { buttons: { 刪除此商品: true, 重新修改數量: true } }).then((value) => {
+      switch (value) {
+        case "刪除此商品":
+          deleteCartOne(e.target.dataset.id);
+          break;
+        case "重新修改數量":
+          e.target.value = 1
+          break;
+      }
+    });
+    return;
+  }
+
   cartData.forEach((item) => {
-
-    if (e.target.value == 0) deleteCartOne(e.target.dataset.id)
-
     if (item.id == e.target.dataset.id) {
       cartItem = {
         data: {
@@ -200,10 +228,11 @@ cartList.addEventListener('change', (e) => {
   })
 
   //console.log(cartItem)
-
-  axios.patch(`https://hexschoollivejs.herokuapp.com/api/livejs/v1/customer/ag3mjksynlokt4gii70y5kqhmqj1/carts`, cartItem)
+  const url = `${baseUrl}/api/livejs/v1/${user}/${apiPath}/carts`;
+  axios.patch(url, cartItem)
     .then((res) => {
       restartCart(res)
+      swal("商品數量已修正", "金額有變動，請確認是否有在預算內", "success");
     })
     .catch((err) => {
       console.log(err)
@@ -272,12 +301,19 @@ let constraints = {
       allowEmpty: false,
       message: "為必填欄位"
     },
+    length: {
+      minimum: 8,
+      message: "至少需要 8 碼"
+    }
   },
   "Email": {
     presence: {
       allowEmpty: false,
       message: "為必填欄位"
     },
+    email: {
+      message: "格式錯誤"
+    }
   },
   "寄送地址": {
     presence: {
@@ -340,22 +376,24 @@ function sendOrderSuccess() {
       }
     }
   }
-  swal("訂單已送出", "感謝訂購！我們會盡快將商品送出～", "success");
 
-  customerForm.reset();
-  axios.post('https://hexschoollivejs.herokuapp.com/api/livejs/v1/customer/ag3mjksynlokt4gii70y5kqhmqj1/orders', customerData)
+  const url = `${baseUrl}/api/livejs/v1/${user}/${apiPath}/orders`;
+  axios.post(url, customerData)
     .then((res) => {
       // console.log(res)
     })
+
+  swal("訂單已送出", "感謝訂購！我們會盡快將商品送出", "success");
+  customerForm.reset();
   deleteCartAll();
 }
 
-const  upIcon = document.querySelector('.upIcon')
+const upIcon = document.querySelector('.upIcon')
 
 upIcon.addEventListener('click', (e) => {
   e.preventDefault();
   window.scrollTo({
     top: 0,
     behavior: "smooth"
-});
+  });
 })

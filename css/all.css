@@ -115,6 +115,24 @@ img {
   color: #b6d6df;
 }
 
+.swal-button {
+  background-color: #4e6e88;
+  color: #f6f6f6;
+  transition: 0.3s;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.swal-button:hover, .swal-button:not([disabled]):hover {
+  background-color: rgba(182, 214, 223, 0.3);
+  color: #3c556a;
+  transition: 0.3s;
+}
+
+.swal-button:focus {
+  box-shadow: none;
+}
+
 a {
   display: block;
   text-decoration: none;
@@ -190,6 +208,24 @@ body {
   color: #b6d6df;
 }
 
+.swal-button {
+  background-color: #4e6e88;
+  color: #f6f6f6;
+  transition: 0.3s;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.swal-button:hover, .swal-button:not([disabled]):hover {
+  background-color: rgba(182, 214, 223, 0.3);
+  color: #3c556a;
+  transition: 0.3s;
+}
+
+.swal-button:focus {
+  box-shadow: none;
+}
+
 .btn {
   border: none;
   font-size: 16px;
@@ -245,6 +281,24 @@ body {
 .upIcon:hover {
   background-color: #3c556a;
   color: #b6d6df;
+}
+
+.swal-button {
+  background-color: #4e6e88;
+  color: #f6f6f6;
+  transition: 0.3s;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.swal-button:hover, .swal-button:not([disabled]):hover {
+  background-color: rgba(182, 214, 223, 0.3);
+  color: #3c556a;
+  transition: 0.3s;
+}
+
+.swal-button:focus {
+  box-shadow: none;
 }
 
 .cart {
@@ -537,6 +591,24 @@ header .btn {
 .upIcon:hover {
   background-color: #3c556a;
   color: #b6d6df;
+}
+
+.swal-button {
+  background-color: #4e6e88;
+  color: #f6f6f6;
+  transition: 0.3s;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.swal-button:hover, .swal-button:not([disabled]):hover {
+  background-color: rgba(182, 214, 223, 0.3);
+  color: #3c556a;
+  transition: 0.3s;
+}
+
+.swal-button:focus {
+  box-shadow: none;
 }
 
 .delAllOrderBtn {

@@ -62,3 +62,20 @@ $warning: #d3ac40;
     background-color: $primary;
     color: $light;
 }
+
+.swal-button{
+    background-color: $secondary;
+    color: $white;
+    transition: 0.3s;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+.swal-button:hover, .swal-button:not([disabled]):hover {
+    background-color: rgba(182, 214, 223, 0.3);
+    color: $primary;
+    transition: 0.3s;
+}
+
+.swal-button:focus{
+    box-shadow: none;;
+}
