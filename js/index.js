@@ -1,5 +1,5 @@
 const apiPath = "ag3mjksynlokt4gii70y5kqhmqj1";
-const baseUrl = "https://hexschoollivejs.herokuapp.com";
+const baseUrl = "https://livejs-api.hexschool.io";
 const user = "customer"
 
 let productData = [];
