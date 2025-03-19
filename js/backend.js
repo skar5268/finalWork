@@ -1,6 +1,6 @@
 const uid = {
     headers: {
-        'Authorization': " Ag3MjkSyNLOkt4giI70Y5KQhmQj1"
+        'Authorization': "Ag3MjkSyNLOkt4giI70Y5KQhmQj1"
     }
 }
 const apiPath = "ag3mjksynlokt4gii70y5kqhmqj1";
